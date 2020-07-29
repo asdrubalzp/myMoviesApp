@@ -17,6 +17,13 @@ const routes: Routes = [
     loadChildren: () =>
       import("./pages/movies/movies.module").then((m) => m.MoviesPageModule),
   },
+  {
+    path: "pages/PopularMovies/:id",
+    loadChildren: () =>
+      import("./pages/singular-movie/singular-movie.module").then(
+        (m) => m.SingularMoviePageModule
+      ),
+  },
 ];
 
 @NgModule({

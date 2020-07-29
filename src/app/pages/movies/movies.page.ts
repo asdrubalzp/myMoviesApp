@@ -11,11 +11,12 @@ export class MoviesPage implements OnInit {
   popularMovies: any[];
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private movieService: MovieService
+    private movieService: MovieService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.getMovies();
     this.pageName = this.activatedRoute.snapshot.paramMap.get("id");
   }
 
@@ -23,13 +24,12 @@ export class MoviesPage implements OnInit {
     // tslint:disable-next-line: no-debugger
     this.movieService
       .getPopularMovies()
-      .then((data: any) => {
-        alert("gili");
-        this.popularMovies = data;
+      .then((data: any[]) => {
+        this.popularMovies = data["results"];
+        console.log(this.popularMovies);
       })
       .catch((err) => {
         console.log(err);
       });
-    console.log(this.popularMovies);
   }
 }
