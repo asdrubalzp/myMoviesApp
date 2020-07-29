@@ -9,6 +9,7 @@ import { MovieService } from "../../services/movie.service";
 export class MoviesPage implements OnInit {
   pageName: string;
   popularMovies: any[];
+  nombre = "geovanny asdrubal";
 
   constructor(
     private movieService: MovieService,
@@ -25,6 +26,7 @@ export class MoviesPage implements OnInit {
     this.movieService
       .getPopularMovies()
       .then((data: any[]) => {
+        // tslint:disable-next-line: no-string-literal
         this.popularMovies = data["results"];
         console.log(this.popularMovies);
       })
