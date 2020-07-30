@@ -8,6 +8,18 @@
 </ion-header>
 
 <ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addToFavorite()">
+      <ion-icon
+        *ngIf="!isActiveFavoriteIcon; else activeIcon"
+        name="star-outline"
+      ></ion-icon>
+    </ion-fab-button>
+    <ng-template #activeIcon>
+      <ion-icon name="star"></ion-icon>
+    </ng-template>
+  </ion-fab>
+
   <ion-card>
     <ion-img
       src="https://image.tmdb.org/t/p/original/{{movie.poster_path}}"
@@ -27,7 +39,7 @@
       <ion-icon name="logo-youtube" slot="start"></ion-icon>
       <ion-label> Ver trailer de la pelicula</ion-label>
       <ion-button (click)="presentAlert()" fill="outline" slot="end"
-        >View</ion-button
+        >Ver</ion-button
       >
     </ion-item>
     <ion-item>

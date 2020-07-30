@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "folder/Inbox",
+    redirectTo: "pages/PopularMovies",
     pathMatch: "full",
   },
   {
@@ -23,7 +23,11 @@ const routes: Routes = [
       import("./pages/singular-movie/singular-movie.module").then(
         (m) => m.SingularMoviePageModule
       ),
+  },  {
+    path: 'favorite-movies',
+    loadChildren: () => import('./pages/favorite-movies/favorite-movies.module').then( m => m.FavoriteMoviesPageModule)
   },
+
 ];
 
 @NgModule({

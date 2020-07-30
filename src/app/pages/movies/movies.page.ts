@@ -9,7 +9,6 @@ import { MovieService } from "../../services/movie.service";
 export class MoviesPage implements OnInit {
   pageName: string;
   popularMovies: any[];
-  nombre = "geovanny asdrubal";
 
   constructor(
     private movieService: MovieService,

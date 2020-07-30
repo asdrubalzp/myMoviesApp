@@ -8,6 +8,8 @@ export class MovieService {
   APIENDPOINT = "https://api.themoviedb.org/3/movie";
   movies: any[];
 
+  favoriteMovies: any[] = [];
+
   constructor(private httpclient: HttpClient) {}
 
   getPopularMovies() {
