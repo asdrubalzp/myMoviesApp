@@ -18,11 +18,14 @@
     <ion-list insent="true">
       <ion-item-sliding *ngFor="let item of popularMovies">
         <ion-item
+          slot="end"
+          detail
+          detailIcon="eye"
           routerLink="{{item.id}}"
           routerLinkActive="router-link-active"
         >
           <ion-label>{{item.title}} </ion-label>
-          <ion-thumbnail>
+          <ion-thumbnail slot="start">
             <img
               src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"
             />
