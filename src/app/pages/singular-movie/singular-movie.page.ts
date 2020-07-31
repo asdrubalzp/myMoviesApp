@@ -52,7 +52,6 @@ export class SingularMoviePage implements OnInit {
     const toast = await this.toastController.create({
       color: colorbutton,
       message: msg,
-      translucent: true,
       duration: 1500,
     });
 
@@ -73,6 +72,7 @@ export class SingularMoviePage implements OnInit {
       this.movieService.favoriteMovies.push(this.movie);
     }
     console.log(this.movieService.favoriteMovies);
+    this.movieService.numberOfFavoriteMovies = this.movieService.favoriteMovies.length;
     this.addToFavoriteToast(this.isActiveFavoriteIcon);
   }
 }

@@ -27,7 +27,6 @@ export class MoviesPage implements OnInit {
       .then((data: any[]) => {
         // tslint:disable-next-line: no-string-literal
         this.popularMovies = data["results"];
-        console.log(this.popularMovies);
       })
       .catch((err) => {
         console.log(err);

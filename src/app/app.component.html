@@ -1,10 +1,10 @@
 <ion-app>
-  <ion-split-pane contentId="main-content">
+  <ion-split-pane contentId="main-content" (click)="refreshFavoritreNumbres()">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Movies Service</ion-list-header>
-          <ion-note> Enjoy :)</ion-note>
+          <ion-list-header>Movies Service 🎥</ion-list-header>
+          <ion-note> En proceso...</ion-note>
 
           <ion-menu-toggle
             auto-hide="false"
@@ -15,7 +15,7 @@
               routerDirection="back"
               [routerLink]="[p.url]"
               lines="full"
-              detail="false"
+              detail="true"
               [class.selected]="selectedIndex == i"
             >
               <ion-icon
@@ -24,6 +24,11 @@
                 [md]="p.icon + '-sharp'"
               ></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
+              <div *ngIf="p.icon === 'star'">
+                <ion-badge color="warning">{{
+                  numberoffavoriteMovies
+                }}</ion-badge>
+              </div>
             </ion-item>
           </ion-menu-toggle>
         </ion-list>

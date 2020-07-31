@@ -13,7 +13,7 @@ const routes: Routes = [
       import("./folder/folder.module").then((m) => m.FolderPageModule),
   },
   {
-    path: "pages/:id",
+    path: "pages/PopularMovies",
     loadChildren: () =>
       import("./pages/movies/movies.module").then((m) => m.MoviesPageModule),
   },
@@ -23,11 +23,14 @@ const routes: Routes = [
       import("./pages/singular-movie/singular-movie.module").then(
         (m) => m.SingularMoviePageModule
       ),
-  },  {
-    path: 'favorite-movies',
-    loadChildren: () => import('./pages/favorite-movies/favorite-movies.module').then( m => m.FavoriteMoviesPageModule)
   },
-
+  {
+    path: "pages/favorite-movies",
+    loadChildren: () =>
+      import("./pages/favorite-movies/favorite-movies.module").then(
+        (m) => m.FavoriteMoviesPageModule
+      ),
+  },
 ];
 
 @NgModule({

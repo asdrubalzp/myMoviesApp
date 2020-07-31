@@ -3,29 +3,30 @@ import { Component, OnInit } from "@angular/core";
 import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
-
+import { MovieService } from "./services/movie.service";
 @Component({
   selector: "app-root",
   templateUrl: "app.component.html",
   styleUrls: ["app.component.scss"],
 })
 export class AppComponent implements OnInit {
+  public numberoffavoriteMovies = 0;
   public selectedIndex = 0;
   public appPages = [
     {
-      title: "Inbox",
+      title: "Peliculas",
       url: "/folder/Inbox",
-      icon: "mail",
+      icon: "videocam",
     },
     {
-      title: "Popular Movies",
+      title: "Populares",
       url: "/pages/PopularMovies",
       icon: "trending-up",
     },
     {
-      title: "Favorites",
-      url: "/folder/Favorites",
-      icon: "heart",
+      title: "Mis Favoritas",
+      url: "/pages/favorite-movies",
+      icon: "star",
     },
     {
       title: "Archived",
@@ -48,7 +49,8 @@ export class AppComponent implements OnInit {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private movieService: MovieService
   ) {
     this.initializeApp();
   }
@@ -57,6 +59,7 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.numberoffavoriteMovies = this.movieService.numberOfFavoriteMovies;
     });
   }
 
@@ -67,5 +70,9 @@ export class AppComponent implements OnInit {
         (page) => page.title.toLowerCase() === path.toLowerCase()
       );
     }
+  }
+
+  refreshFavoritreNumbres() {
+    this.numberoffavoriteMovies = this.movieService.numberOfFavoriteMovies;
   }
 }

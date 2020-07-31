@@ -9,6 +9,7 @@ export class MovieService {
   movies: any[];
 
   favoriteMovies: any[] = [];
+  numberOfFavoriteMovies = 0;
 
   constructor(private httpclient: HttpClient) {}
 
