@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { MovieService } from "../../services/movie.service";
 @Component({
   selector: "app-movies",
@@ -9,11 +9,15 @@ import { MovieService } from "../../services/movie.service";
 export class MoviesPage implements OnInit {
   pageName: string;
   popularMovies: any[];
+  movie: any;
 
   constructor(
     private movieService: MovieService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
+    this.movie = this.movieService.getMovieDetail();
+  }
 
   ngOnInit() {
     this.getMovies();
@@ -31,5 +35,10 @@ export class MoviesPage implements OnInit {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  getMovieDetails(movie) {
+    this.movieService.setMovieDetail(movie);
+    this.router.navigateByUrl("/movie/" + movie.id);
   }
 }

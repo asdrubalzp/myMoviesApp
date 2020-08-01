@@ -15,17 +15,17 @@ export class AppComponent implements OnInit {
   public appPages = [
     {
       title: "Peliculas",
-      url: "/folder/Inbox",
+      url: "searchmovies",
       icon: "videocam",
     },
     {
       title: "Populares",
-      url: "/pages/PopularMovies",
+      url: "PopularMovies",
       icon: "trending-up",
     },
     {
       title: "Mis Favoritas",
-      url: "/pages/favorite-movies",
+      url: "favorite-movies",
       icon: "star",
     },
     {

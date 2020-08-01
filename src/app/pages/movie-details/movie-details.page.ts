@@ -3,24 +3,22 @@ import { ActivatedRoute } from "@angular/router";
 import { MovieService } from "../../services/movie.service";
 import { AlertController } from "@ionic/angular";
 import { ToastController } from "@ionic/angular";
-
 @Component({
-  selector: "app-singular-movie",
-  templateUrl: "./singular-movie.page.html",
-  styleUrls: ["./singular-movie.page.scss"],
+  selector: "app-movie-details",
+  templateUrl: "./movie-details.page.html",
+  styleUrls: ["./movie-details.page.scss"],
 })
-export class SingularMoviePage implements OnInit {
+export class MovieDetailsPage implements OnInit {
   idMovie: string;
   movie: any;
-
   isActiveFavoriteIcon = false;
   constructor(
-    private activatedRoute: ActivatedRoute,
     private movieService: MovieService,
     public alertController: AlertController,
-    public toastController: ToastController
+    public toastController: ToastController,
+    private activatedRoute: ActivatedRoute
   ) {
-    this.idMovie = activatedRoute.snapshot.paramMap.get("id");
+    this.movie = this.movieService.getMovieDetail();
   }
 
   ngOnInit() {}
@@ -64,7 +62,6 @@ export class SingularMoviePage implements OnInit {
       this.isActiveFavoriteIcon = true;
       this.movieService.favoriteMovies.push(this.movie);
     }
-    console.log(this.movieService.favoriteMovies);
     this.movieService.numberOfFavoriteMovies = this.movieService.favoriteMovies.length;
     this.addToFavoriteToast(this.isActiveFavoriteIcon);
   }

@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "pages/PopularMovies",
+    redirectTo: "searchmovies",
     pathMatch: "full",
   },
   {
@@ -13,22 +13,36 @@ const routes: Routes = [
       import("./folder/folder.module").then((m) => m.FolderPageModule),
   },
   {
-    path: "pages/PopularMovies",
+    path: "PopularMovies",
     loadChildren: () =>
       import("./pages/movies/movies.module").then((m) => m.MoviesPageModule),
   },
   {
-    path: "pages/PopularMovies/:id",
+    path: "PopularMovies/:id",
     loadChildren: () =>
       import("./pages/singular-movie/singular-movie.module").then(
         (m) => m.SingularMoviePageModule
       ),
   },
   {
-    path: "pages/favorite-movies",
+    path: "favorite-movies",
     loadChildren: () =>
       import("./pages/favorite-movies/favorite-movies.module").then(
         (m) => m.FavoriteMoviesPageModule
+      ),
+  },
+  {
+    path: "searchmovies",
+    loadChildren: () =>
+      import("./pages/searchmovies/searchmovies.module").then(
+        (m) => m.SearchmoviesPageModule
+      ),
+  },
+  {
+    path: "movie/:id",
+    loadChildren: () =>
+      import("./pages/movie-details/movie-details.module").then(
+        (m) => m.MovieDetailsPageModule
       ),
   },
 ];
