@@ -1,14 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="/searchmovies"></ion-back-button>
     </ion-buttons>
     <ion-title>
       {{movie.title}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addToFavorite()">
@@ -29,7 +28,7 @@
     ></ion-img>
 
     <ion-card-header>
-      <ion-card-title>{{movie.title}}</ion-card-title>
+      <ion-card-title> <b>{{movie.title}}</b></ion-card-title>
     </ion-card-header>
 
     <ion-card-content style="color: white;" class="ion-text-justify">
@@ -41,9 +40,15 @@
     <ion-item>
       <ion-icon name="logo-youtube" slot="start"></ion-icon>
       <ion-label> Ver trailer de la película</ion-label>
-      <ion-button (click)="presentAlert()" fill="outline" slot="end"
-        >Ver</ion-button
+
+      <ion-button
+        (click)="redirectYoutube()"
+        fill="outline"
+        slot="end"
+        href="{{this.urlTrailerMovie}}"
       >
+        Ver
+      </ion-button>
     </ion-item>
     <ion-item>
       <ion-icon name="happy" slot="start"></ion-icon>

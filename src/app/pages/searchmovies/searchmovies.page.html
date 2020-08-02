@@ -45,7 +45,7 @@
     <ion-list insent="true">
       <ion-item-sliding *ngFor="let item of movies">
         <ion-item
-          (click)="goToMovieDetails(item)"
+          (click)="goToMovieDetails(item.id)"
           slot="end"
           detail
           detailIcon="arrow-redo-circle"

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { MovieService } from "../../services/movie.service";
 import { AlertController } from "@ionic/angular";
 import { ToastController } from "@ionic/angular";
@@ -10,15 +10,18 @@ import { ToastController } from "@ionic/angular";
 })
 export class MovieDetailsPage implements OnInit {
   idMovie: string;
-  movie: any;
+  movie: any = [];
   isActiveFavoriteIcon = false;
+  urlTrailerMovie: string;
   constructor(
     private movieService: MovieService,
+    private activatedRoute: ActivatedRoute,
     public alertController: AlertController,
     public toastController: ToastController,
-    private activatedRoute: ActivatedRoute
+    private router: Router
   ) {
-    this.movie = this.movieService.getMovieDetail();
+    this.idMovie = this.activatedRoute.snapshot.paramMap.get("id");
+    this.getDetail();
   }
 
   ngOnInit() {}
@@ -64,5 +67,41 @@ export class MovieDetailsPage implements OnInit {
     }
     this.movieService.numberOfFavoriteMovies = this.movieService.favoriteMovies.length;
     this.addToFavoriteToast(this.isActiveFavoriteIcon);
+  }
+
+  getDetail() {
+    this.movieService
+      .getDetailMovie(this.idMovie)
+      .then((data: any) => {
+        this.movie = data;
+        console.log(this.movie);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    this.getVideoData();
+  }
+
+  getVideoData() {
+    this.movieService.getTrailerMovie(this.idMovie).subscribe(
+      (data: any) => {
+        data["results"].forEach((element) => {
+          if (element.site === "YouTube" && element.type === "Trailer") {
+            this.urlTrailerMovie = `https://www.youtube.com/watch?v=${element.key}`;
+          }
+        });
+        // this.dataVideo = data["results"];
+        // console.log(this.dataVideo);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  redirectYoutube() {
+    if (this.urlTrailerMovie == null) {
+      this.presentAlert();
+    }
   }
 }

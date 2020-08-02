@@ -26,7 +26,6 @@ export class SearchmoviesPage implements OnInit {
       (data) => {
         // tslint:disable-next-line: no-string-literal
         this.movies = [...this.movies, ...data["results"]];
-        console.log("searched movies", this.movies);
       },
       (error) => {
         this.movies = [];
@@ -48,9 +47,9 @@ export class SearchmoviesPage implements OnInit {
     this.movieToSearch = event.detail.value;
     this.getMovie();
   }
-  goToMovieDetails(movie: any) {
-    this.movieService.setMovieDetail(movie);
-    this.router.navigateByUrl("/movie/" + movie.id);
+  goToMovieDetails(id: any) {
+    //this.movieService.setMovieDetail(movie);
+    this.router.navigateByUrl("/movie/" + id);
   }
 
   toggleInfiniteScroll() {
