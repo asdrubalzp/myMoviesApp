@@ -7,23 +7,13 @@ const routes: Routes = [
     redirectTo: "searchmovies",
     pathMatch: "full",
   },
-  {
-    path: "folder/:id",
-    loadChildren: () =>
-      import("./folder/folder.module").then((m) => m.FolderPageModule),
-  },
+
   {
     path: "PopularMovies",
     loadChildren: () =>
       import("./pages/movies/movies.module").then((m) => m.MoviesPageModule),
   },
-  {
-    path: "PopularMovies/:id",
-    loadChildren: () =>
-      import("./pages/singular-movie/singular-movie.module").then(
-        (m) => m.SingularMoviePageModule
-      ),
-  },
+
   {
     path: "favorite-movies",
     loadChildren: () =>

@@ -23,33 +23,36 @@ export class SearchmoviesPage implements OnInit {
   }
 
   getMovie(event?) {
-    this.movieService.getMovie(this.movieToSearch, this.numberPage).subscribe(
-      (data) => {
-        // tslint:disable-next-line: no-string-literal
-        this.movies = [...this.movies, ...data["results"]];
-      },
-      (error) => {
-        this.movies = [];
-        console.log(error);
-      }
-    );
+    setTimeout(() => {
+      this.movieService.getMovie(this.movieToSearch, this.numberPage).subscribe(
+        (data) => {
+          // tslint:disable-next-line: no-string-literal
+          this.movies = [...this.movies, ...data["results"]];
+        },
+        (error) => {
+          this.movies = [];
+          console.log(error);
+        }
+      );
 
-    if (event) {
-      event.target.complete();
-    }
-    if (this.movies.length === 200) {
-      event.target.disable = true;
-      this.infiniteScroll.disabled = true;
-    }
+      if (event) {
+        event.target.complete();
+      }
+      if (this.movies.length === 500) {
+        event.target.disable = true;
+        this.infiniteScroll.disabled = true;
+      }
+      this.numberPage += 1;
+    }, 500);
   }
 
   onSearchChange(event?) {
     this.movies = [];
+    this.numberPage = 1;
     this.movieToSearch = event.detail.value;
     this.getMovie();
   }
   goToMovieDetails(id: any) {
-    //this.movieService.setMovieDetail(movie);
     this.router.navigateByUrl("/movie/" + id);
   }
 

@@ -29,5 +29,6 @@ export class FavoriteMoviesPage implements OnInit {
 
   getFavoriteMovies() {
     this.movies = this.movieService.favoriteMovies;
+    console.log(this.movies);
   }
 }

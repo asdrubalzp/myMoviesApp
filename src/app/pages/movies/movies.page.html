@@ -18,7 +18,7 @@
     <ion-list insent="true">
       <ion-item-sliding *ngFor="let item of popularMovies">
         <ion-item
-          (click)="getMovieDetails(item)"
+          (click)="goToMovieDetails(item.id)"
           slot="end"
           detail
           detailIcon="arrow-redo-circle"
@@ -38,4 +38,13 @@
       </ion-item-sliding>
     </ion-list>
   </div>
+
+  <ion-infinite-scroll (ionInfinite)="getMovies($event)">
+    <ion-infinite-scroll-content
+      color="warning"
+      loadingSpinner="dots"
+      loadingText="Cargando mas películas..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

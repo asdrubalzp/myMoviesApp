@@ -57,6 +57,10 @@
               *ngIf="item.poster_path != null"
               src="https://image.tmdb.org/t/p/original/{{item.poster_path}}"
             />
+            <img
+              *ngIf="item.poster_path == null"
+              src="../../../assets/sample-img.png"
+            />
           </ion-thumbnail>
         </ion-item>
 
@@ -69,8 +73,8 @@
 
   <ion-infinite-scroll threshold="100px" (ionInfinite)="getMovie($event)">
     <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data..."
+      loadingSpinner="dots"
+      loadingText="Cargando más películas..."
     >
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
