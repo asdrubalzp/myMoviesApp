@@ -12,12 +12,13 @@ export class SearchmoviesPage implements OnInit {
   searchBarOpened = false;
 
   movies: any[] = [];
-  movieToSearch = "Star Wars";
+  movieToSearch = "";
   numberPage = 1;
 
   constructor(private movieService: MovieService, private router: Router) {}
 
   ngOnInit() {
+    this.movieToSearch = "Star Wars";
     this.getMovie();
   }
 

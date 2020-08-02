@@ -17,8 +17,7 @@ export class MovieDetailsPage implements OnInit {
     private movieService: MovieService,
     private activatedRoute: ActivatedRoute,
     public alertController: AlertController,
-    public toastController: ToastController,
-    private router: Router
+    public toastController: ToastController
   ) {
     this.idMovie = this.activatedRoute.snapshot.paramMap.get("id");
     this.getDetail();
@@ -29,8 +28,8 @@ export class MovieDetailsPage implements OnInit {
   async presentAlert() {
     const alert = await this.alertController.create({
       cssClass: "my-custom-class",
-      header: "Error",
-      message: "Esta funcionalidad aun está en proceso 😭",
+      header: "Lo sentimos",
+      message: "No se encontró ningun tráiler para esta película",
       buttons: ["OK"],
     });
 
@@ -97,11 +96,5 @@ export class MovieDetailsPage implements OnInit {
         console.log(error);
       }
     );
-  }
-
-  redirectYoutube() {
-    if (this.urlTrailerMovie == null) {
-      this.presentAlert();
-    }
   }
 }
