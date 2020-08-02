@@ -62,7 +62,10 @@ export class MovieDetailsPage implements OnInit {
       this.movieService.favoriteMovies.pop();
     } else {
       this.isActiveFavoriteIcon = true;
-      this.movieService.favoriteMovies.push(this.movie);
+      this.movieService.favoriteMovies.push({
+        movieDetail: this.movie,
+        review: "",
+      });
     }
     this.movieService.numberOfFavoriteMovies = this.movieService.favoriteMovies.length;
     this.addToFavoriteToast(this.isActiveFavoriteIcon);

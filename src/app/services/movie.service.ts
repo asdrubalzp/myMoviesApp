@@ -7,7 +7,7 @@ import { HttpClient } from "@angular/common/http";
 export class MovieService {
   APIENDPOINT = "https://api.themoviedb.org/3";
   movies: any[];
-  favoriteMovies: any[] = [];
+  favoriteMovies = [];
   numberOfFavoriteMovies = 0;
 
   constructor(private httpclient: HttpClient) {}

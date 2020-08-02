@@ -27,6 +27,11 @@
       src="https://image.tmdb.org/t/p/original/{{movie.poster_path}}"
     ></ion-img>
 
+    <ion-img
+      *ngIf="movie.poster_path == null"
+      src="https://image.tmdb.org/t/p/original/{{movie.poster_path}}"
+    ></ion-img>
+
     <ion-card-header>
       <ion-card-title> <b>{{movie.title}}</b></ion-card-title>
     </ion-card-header>

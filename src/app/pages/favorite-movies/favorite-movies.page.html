@@ -7,7 +7,29 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-  <div *ngIf="movies.length === 0 ;else bloqueElse">
+  <div *ngIf="movies.length > 0 ;else noFavoriteMoviesSlider">
+    <ion-card *ngFor="let movie of movies">
+      <ion-card-header>
+        <ion-card-title> {{movie["movieDetail"].title}} </ion-card-title>
+      </ion-card-header>
+      <ion-img
+        style="text-align: center;"
+        class="resize"
+        src="https://image.tmdb.org/t/p/original/{{movie.movieDetail.poster_path}}"
+      >
+      </ion-img>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="stacked">Comentario</ion-label>
+          <ion-textarea
+            placeholder="Agrega un comentario a tu película"
+          ></ion-textarea>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ng-template #noFavoriteMoviesSlider>
     <ion-slides pager="true">
       <ion-slide *ngFor="let slide of slides" text-center>
         <div class="slide-img-padding">
@@ -30,9 +52,5 @@
         </ion-row>
       </ion-grid>
     </ion-footer>
-  </div>
-
-  <ng-template #bloqueElse>
-    <h2>holiwis</h2>
   </ng-template>
 </ion-content>
