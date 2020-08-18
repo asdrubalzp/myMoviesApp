@@ -29,7 +29,14 @@ export class AppComponent implements OnInit {
       icon: "star",
     },
   ];
-  public labels = ["Family", "Friends", "Notes", "Work", "Travel", "Reminders"];
+  public labels = [
+    "Comedia",
+    "Terror",
+    "Acción",
+    "Suspenso",
+    "Animadas",
+    "InfantilS",
+  ];
 
   constructor(
     private platform: Platform,

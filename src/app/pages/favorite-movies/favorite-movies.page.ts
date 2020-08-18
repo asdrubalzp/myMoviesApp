@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MovieService } from "../../services/movie.service";
+import { FormBuilder, Validators, FormControl } from "@angular/forms";
 @Component({
   selector: "app-favorite-movies",
   templateUrl: "./favorite-movies.page.html",
@@ -229,14 +230,42 @@ export class FavoriteMoviesPage implements OnInit {
       },
     },
   };
-  constructor(private movieService: MovieService) {
+
+  constructor(
+    private movieService: MovieService,
+    private formBuilder: FormBuilder
+  ) {
     this.getFavoriteMovies();
   }
+  commentForm = this.formBuilder.group({
+    comment: new FormControl(
+      "",
+      Validators.compose([Validators.maxLength(200), Validators.minLength(5)])
+    ),
+  });
 
+  public errorMessages = {
+    comment: [
+      {
+        type: "minlength",
+        message: "El comentario debe tener más de 5 caracteres.",
+      },
+      {
+        type: "maxlength",
+        message: "El comentario no puede tener más de 200 caracteres.",
+      },
+    ],
+  };
+
+  public submit() {
+    console.log(this.commentForm.value);
+  }
   ngOnInit() {
     this.getFavoriteMovies();
   }
-
+  get comment() {
+    return this.commentForm.get("comment");
+  }
   getFavoriteMovies() {
     this.movies = this.movieService.favoriteMovies;
   }
